@@ -1,0 +1,23 @@
+
+<h1>Recherche d'album</h1>
+<mat-card>
+  <form #searchAlbum="ngForm" (ngSubmit)="chercherAlbums(searchAlbum.value.mot)">
+    <mat-form-field>
+      <input matInput type="text" placeholder="Mot-clés" ngModel name="mot" required>
+    </mat-form-field>
+
+    <input id="bouton"  [disabled]="!searchAlbum.valid" type="submit" value="Valider">
+
+  </form>
+</mat-card>
+
+<mat-grid-list cols="3">
+  <mat-grid-tile *ngFor="let cd of album; let i = index">
+    <mat-card>
+      <mat-card-header>
+        <mat-card-title><p style="text-align: center"> {{cd.name}}</p></mat-card-title>
+      </mat-card-header>
+      <img mat-card-image src="{{cd.images[0].url}}" style="width: 80%">
+    </mat-card>
+  </mat-grid-tile>
+</mat-grid-list>
