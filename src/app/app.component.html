@@ -1,20 +1,22 @@
 <!--The content below is only a placeholder and can be replaced.-->
-<div style="text-align:center">
-  <mat-toolbar color="basic">
+
+<div style="text-align:center" >
+  <mat-toolbar id="menu" color="basic">
     <mat-toolbar-row>
       <button type="button" id="bouton" mat-icon-button (click)="drawer.toggle()">
         <mat-icon>menu</mat-icon>
       </button>
-      <span>    Utilisation de spotify</span>
+      <h1 style="font-size: 35px"> SPOTIFY</h1>
     </mat-toolbar-row>
   </mat-toolbar>
 
   <mat-sidenav-container class="example-container">
     <mat-sidenav #drawer mode="side" opened role="navigation">
-      <mat-nav-list>
-        <a mat-list-item routerLink="accueil">Accueil</a>
-        <a mat-list-item routerLink="album">Album</a>
-        <a mat-list-item routerLink="chanteurs">Chanteurs</a>
+      <mat-nav-list id="list">
+        <a mat-list-item routerLink="accueil">ACCUEIL</a>
+        <a mat-list-item routerLink="album">ALBUMS</a>
+        <a mat-list-item routerLink="chanteurs">CHANTEURS</a>
+        <a mat-list-item routerLink="playlist">PLAYLIST</a>
       </mat-nav-list>
     </mat-sidenav>
     <mat-sidenav-content>

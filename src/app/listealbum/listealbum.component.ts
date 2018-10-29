@@ -17,6 +17,7 @@ export class ListealbumComponent implements OnInit {
   ngOnInit() {
 
   }
+
   chercherAlbums(mot: string) {
   this.spotService.getAlbums(mot).subscribe(
     (resultat) => {
@@ -26,4 +27,7 @@ export class ListealbumComponent implements OnInit {
     }
   );
   }
+
+
+
 }

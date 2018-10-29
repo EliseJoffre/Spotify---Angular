@@ -1,5 +1,5 @@
 
-<h1>Recherche de chanteurs</h1>
+<h1>RECHERCHER UN CHANTEUR</h1>
 <mat-card>
   <form #searchChanteur="ngForm" (ngSubmit)="chercherChanteurs(searchChanteur.value.chanteur)">
     <mat-form-field>
@@ -11,13 +11,14 @@
   </form>
 </mat-card>
 
-<mat-grid-list cols="3">
+<mat-grid-list cols="4">
   <mat-grid-tile *ngFor="let ch of chanteurs; let i = index">
     <mat-card>
       <mat-card-header>
         <mat-card-title><p style="text-align: center"> {{ch.name}}</p></mat-card-title>
       </mat-card-header>
       <img mat-card-image *ngIf="ch.images.length >0 " src={{ch.images[2].url}} >
+      <img mat-card-image *ngIf="ch.images.length==0 " src="../../assets/no_image.png" >
     </mat-card>
   </mat-grid-tile>
 </mat-grid-list>

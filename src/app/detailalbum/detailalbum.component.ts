@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+import {SpotifyService} from '../spotify.service';
 
 @Component({
   selector: 'app-detailalbum',
@@ -7,9 +9,18 @@ import { Component, OnInit } from '@angular/core';
 })
 export class DetailalbumComponent implements OnInit {
 
-  constructor() { }
+  monalbum: Object;
+
+
+  constructor(private spotService: SpotifyService, private route: ActivatedRoute) { }
 
   ngOnInit() {
-  }
+    this.spotService.getAlbum(this.route.snapshot.params['id']).subscribe(
+      (resultat) => {
+        console.log(resultat);
+        this.monalbum = resultat;
 
+      }
+    );
+  }
 }

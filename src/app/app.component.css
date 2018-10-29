@@ -3,3 +3,26 @@
   padding: 0.5%;
   margin: 0.5%;
 }
+
+#menu{
+  background-color: black;
+  color:#1dd05d;
+
+}
+
+#menu h1{
+  font-size: xx-large;
+  text-align: center;
+  margin: auto;
+}
+
+button{
+  background-color: black;
+  color:white;
+
+}
+
+#list a{
+  color: #1dd05d;
+
+}

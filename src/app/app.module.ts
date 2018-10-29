@@ -19,7 +19,8 @@ import { RouterModule } from '@angular/router';
 import {appRoutes} from './app.routing';
 import { ListechanteursComponent } from './listechanteurs/listechanteurs.component';
 import { DetailalbumComponent } from './detailalbum/detailalbum.component';
-
+import { ListeplaylistComponent } from './listeplaylist/listeplaylist.component';
+import {MatRadioModule} from '@angular/material/radio';
 
 @NgModule({
   declarations: [
@@ -27,7 +28,8 @@ import { DetailalbumComponent } from './detailalbum/detailalbum.component';
     ListealbumComponent,
     AccueilComponent,
     ListechanteursComponent,
-    DetailalbumComponent
+    DetailalbumComponent,
+    ListeplaylistComponent,
   ],
   imports: [
     BrowserModule,
@@ -43,10 +45,13 @@ import { DetailalbumComponent } from './detailalbum/detailalbum.component';
     MatToolbarModule,
     MatSidenavModule,
     RouterModule,
-    RouterModule.forRoot(appRoutes)
+    RouterModule.forRoot(appRoutes),
+MatRadioModule
+
 
   ],
   providers: [SpotifyService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
+

@@ -1,3 +1,11 @@
-<p>
-  detailalbum works!
-</p>
+
+<div id="maDiv">
+<h1>{{monalbum.name}}</h1>
+      <img mat-card-image src="{{monalbum.images[1].url}}" style="width: 40%" >
+      <ul *ngFor="let title of monalbum.tracks.items; let i = index" style="text-align: left;list-style-type:none">
+      <li>{{i+1}} - {{title.name}} ({{((title.duration_ms/1000)/60) | number:0}} mn)
+        <audio *ngIf="title.preview_url != null" id=”AudioSong” controls [src]="title.preview_url">pas supporté</audio>
+      </li>
+      </ul>
+
+</div>
