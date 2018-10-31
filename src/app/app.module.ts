@@ -21,6 +21,7 @@ import { ListechanteursComponent } from './listechanteurs/listechanteurs.compone
 import { DetailalbumComponent } from './detailalbum/detailalbum.component';
 import { ListeplaylistComponent } from './listeplaylist/listeplaylist.component';
 import {MatRadioModule} from '@angular/material/radio';
+import { DetailplaylistComponent } from './detailplaylist/detailplaylist.component';
 
 @NgModule({
   declarations: [
@@ -30,6 +31,7 @@ import {MatRadioModule} from '@angular/material/radio';
     ListechanteursComponent,
     DetailalbumComponent,
     ListeplaylistComponent,
+    DetailplaylistComponent,
   ],
   imports: [
     BrowserModule,

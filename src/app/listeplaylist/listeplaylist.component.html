@@ -6,7 +6,7 @@
     <mat-card>
       <mat-card-header>
 
-        <mat-card-title>{{pl.name}}</mat-card-title>
+        <mat-card-title> <a [routerLink]="['/playlist' , pl.id]" style="text-align: center">{{pl.name}}</a></mat-card-title>
 
       </mat-card-header>
 
