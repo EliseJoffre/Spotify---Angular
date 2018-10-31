@@ -1,0 +1,47 @@
+.example-container {
+  display: flex;
+  flex-direction: column;
+  margin-left: 10%;
+  margin-right: 10%;
+}
+
+.example-container > * {
+  width: 100%;
+}
+.example-container form {
+  margin-bottom: 20px;
+}
+
+.example-container form > * {
+  margin: 5px 0;
+}
+
+.example-container .mat-radio-button {
+  margin: 0 5px;
+}
+
+#bouton{
+  padding: 0.5%;
+  padding-left: 1%;
+  padding-right: 1%;
+  margin-left: 1%;
+  font-size:18px ;
+  background-color: #1dd05d;
+  border: 0;
+  border-radius: 10px;
+}
+
+#bouton:hover {
+  box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
+  font-size:20px ;
+  padding: 0.8%;
+  padding-left: 1.2%;
+  padding-right: 1.2%;
+}
+
+h2{
+  color: #1dd05d;
+}
+#modif{
+  display: none;
+}

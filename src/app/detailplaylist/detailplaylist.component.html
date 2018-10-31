@@ -1,5 +1,60 @@
-<div id="maDiv">
-  <h1>{{maplaylist.name}}</h1>
 
+<div  style="margin: 4% 7%;text-align: center">
+  <mat-accordion>
+    <mat-expansion-panel>
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          <h2>MODIFIER UNE PLAYLIST</h2>
+        </mat-panel-title>
+      </mat-expansion-panel-header>
+      <form #updatePlaylist="ngForm" (ngSubmit)="majPlaylist(updatePlaylist.value.name,updatePlaylist.value.description,updatePlaylist.value.bool)">
+        <div style="text-align:left; " class="example-container">
+          <mat-form-field >
+            <input  matInput type="text" value="{{maplaylist.name}}" placeholder="Nom" ngModel name="name" required>
+          </mat-form-field>
+          <br>
+          <mat-form-field>
+            <textarea rows="6"  matInput ngModel name="description" placeholder="Description" required>{{maplaylist.description}}</textarea>
+          </mat-form-field>
+          <br>
+          <mat-radio-group  name="bool" matInput ngModel required>
+            <mat-label >Souhaitez vous la rendre public ? *</mat-label>
+            <br><br>
+            <mat-radio-button selected  value="true">Oui  </mat-radio-button>
+            <mat-radio-button   value="false">Non</mat-radio-button>
+          </mat-radio-group>
+        </div>
+
+        <input id="bouton" style="margin-top: 1%"  [disabled]="!updatePlaylist.valid" type="submit" value="VALIDER">
+
+      </form>
+    </mat-expansion-panel>
+  </mat-accordion>
+</div>
+<div  style="margin: 4% 7%;text-align: center">
+
+
+  <h1 style="font-weight: bold ">{{maplaylist.name}}</h1>
+  <img *ngIf="maplaylist.images.length != 0" mat-card-image style="width: 30%" src="{{maplaylist.images[0].url}}"  >
+  <img mat-card-image *ngIf="maplaylist.images.length==0 " style="width: 30%" src="../../assets/no_image.png" >
+  <p *ngIf="maplaylist.public==true">{{maplaylist.description}} (Cette playlist est publique)</p>
+  <p *ngIf="maplaylist.public==false">{{maplaylist.description}} (Cette playlist est privée)</p>
+  <mat-accordion>
+    <mat-expansion-panel>
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          <h2>MES CHANSONS</h2>
+        </mat-panel-title>
+      </mat-expansion-panel-header>
+  <ul *ngFor="let title of maplaylist.tracks.items; let i = index" style="text-align: left;list-style-type:none">
+    <li>{{i+1}} - {{title.track.name}} ({{((title.track.duration_ms/1000)/60) | number:0}} mn)
+      <audio style="height: 2%" *ngIf="title.track.preview_url != null" id=”AudioSong” controls [src]="title.track.preview_url">pas supporté</audio>
+    </li>
+  </ul>
+
+    </mat-expansion-panel>
+  </mat-accordion>
 
 </div>
+
+

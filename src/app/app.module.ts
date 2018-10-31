@@ -22,6 +22,7 @@ import { DetailalbumComponent } from './detailalbum/detailalbum.component';
 import { ListeplaylistComponent } from './listeplaylist/listeplaylist.component';
 import {MatRadioModule} from '@angular/material/radio';
 import { DetailplaylistComponent } from './detailplaylist/detailplaylist.component';
+import {MatExpansionModule} from '@angular/material/expansion';
 
 @NgModule({
   declarations: [
@@ -48,6 +49,7 @@ import { DetailplaylistComponent } from './detailplaylist/detailplaylist.compone
     MatSidenavModule,
     RouterModule,
     RouterModule.forRoot(appRoutes),
+    MatExpansionModule,
 MatRadioModule
 
 
