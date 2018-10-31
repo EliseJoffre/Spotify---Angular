@@ -49,6 +49,7 @@
   <ul *ngFor="let title of maplaylist.tracks.items; let i = index" style="text-align: left;list-style-type:none">
     <li>{{i+1}} - {{title.track.name}} ({{((title.track.duration_ms/1000)/60) | number:0}} mn)
       <audio style="height: 2%" *ngIf="title.track.preview_url != null" id=”AudioSong” controls [src]="title.track.preview_url">pas supporté</audio>
+      <mat-icon >delete</mat-icon>
     </li>
   </ul>
 
