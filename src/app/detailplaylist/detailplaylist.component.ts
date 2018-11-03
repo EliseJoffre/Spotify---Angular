@@ -11,6 +11,7 @@ export class DetailplaylistComponent implements OnInit {
 
   maplaylist: Object;
   public: boolean;
+  tracks: Array<Object>;
   constructor(private spotService: SpotifyService, private route: ActivatedRoute) { }
 
   ngOnInit() {
@@ -24,7 +25,6 @@ export class DetailplaylistComponent implements OnInit {
   }
 
   majPlaylist(name: string, description: string, bool: boolean ) {
-    console.log('je passe la');
     if (bool === true) {
       this.public = true;
     } else {
@@ -39,6 +39,10 @@ export class DetailplaylistComponent implements OnInit {
     });
     location.reload();
 
+  }
+
+  deletePlaylist(uri, position) {
+    // this.spotService.deleteTrack(this.route.snapshot.params['id'], uri , position);
   }
 
 }

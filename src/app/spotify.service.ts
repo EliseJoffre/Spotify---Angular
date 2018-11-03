@@ -11,9 +11,9 @@ export class SpotifyService {
 
   private spotifyUrlSearchAlbum = 'https://api.spotify.com/v1/search?type=album&market=FR&limit=10&q=';
   private spotifyUrlSearchChanteur = 'https://api.spotify.com/v1/search?type=artist&market=FR&limit=10&q=';
-  private token = 'BQCvh_5EKw6gv-FRR-mvxU5F0h8eUxU2hPpQMLwv5kZSO4_h4dtJmks6gM2Y_u01pVnN4xgLxjxb4H9Wwnj0_XHZ5aBH7c' +
-    '3roHV4tkZJvfWeVJ6Py9fEuvSiCKIyVEHCEeV1QssJhWe0MPsDEUy_dEJyk_H2c5JZ25kvEGlPtunDISBkt4ryY5q7ghR50JZfqgYYkcn2ee1eeBE1j' +
-    'pHSaiRjancABOpff0N_NVGJ8sfpycEAn1ciCTpXugxkgiRc2aMshpuz9mFQwF9h';
+  private token = 'BQAxhU282i4Vwqzxr2vBemdkOfsnTCdxxgvAzvWhDk76Y7DxWtiAn9XRHjvSmQ84M_RHWzTTDf9AfzH-HZS_XCfQlTV1' +
+    'xoclIOzXNj3QucaRpi0g1XiyhgY7PU9aX_pFzuZpmVUDkMJeemrmAhurHcHrYLU1eG6zunqoEMzgvx2yTpDw-2UqfK_QDPgrCF2uV3-Cv7_iq_BXeL' +
+    'Eg60N16SGHLamUx0Of_0gTIld3QUufkD-GFP8ik1Zpy_lA8gYThhXNKqRTDqwMQw7M';
   private spotifyUrlAlbum = 'https://api.spotify.com/v1/albums/';
   private spotifyUrlPlaylist = 'https://api.spotify.com/v1/users/elisejoffre/playlists';
   private spotifyUrlUnePlaylist = 'https://api.spotify.com/v1/playlists/';
@@ -21,7 +21,6 @@ export class SpotifyService {
   private headers: HttpHeaders;
 
   constructor(private http: HttpClient) {
-
     this.headers = new HttpHeaders({ 'Content-Type': 'application/json', 'Authorization' : 'Bearer ' + this.token });
   }
 
@@ -41,14 +40,22 @@ export class SpotifyService {
   }
 
   addPlaylist(playlist) {
-    this.http.post(this.spotifyUrlPlaylist,  playlist, { headers : this.headers}).subscribe(data => {console.log(data); }, );
+    this.http.post(this.spotifyUrlPlaylist,  playlist, { headers : this.headers});
   }
 
   getUnePlaylist(id: string) {
     return this.http.get(this.spotifyUrlUnePlaylist + id, { headers : this.headers});
   }
   updatePlaylist(id: string, playlist) {
-    return this.http.put(this.spotifyUrlUnePlaylist + id, playlist , { headers : this.headers}).subscribe(data => {console.log('lalal' + data); }, );
+    return this.http.put(this.spotifyUrlUnePlaylist + id, playlist , { headers : this.headers});
+  }
+
+  deleteTrack(id: string, tracks) {
+    return this.http.post(this.spotifyUrlUnePlaylist + id +  '/' , tracks, { headers : this.headers});
+  }
+
+  addTrack(id: string, track) {
+    return this.http.post(this.spotifyUrlUnePlaylist + id +  '/tracks' , track, { headers : this.headers});
   }
 
 }

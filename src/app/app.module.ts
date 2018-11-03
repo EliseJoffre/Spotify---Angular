@@ -18,12 +18,14 @@ import {MatSidenavModule} from '@angular/material/sidenav';
 import { RouterModule } from '@angular/router';
 import {appRoutes} from './app.routing';
 import { ListechanteursComponent } from './listechanteurs/listechanteurs.component';
-import { DetailalbumComponent } from './detailalbum/detailalbum.component';
+import {DetailalbumComponent} from './detailalbum/detailalbum.component';
 import { ListeplaylistComponent } from './listeplaylist/listeplaylist.component';
 import {MatRadioModule} from '@angular/material/radio';
 import { DetailplaylistComponent } from './detailplaylist/detailplaylist.component';
 import {MatExpansionModule} from '@angular/material/expansion';
-
+import {MatDialogModule} from '@angular/material/dialog';
+import { DialogComponent } from './dialog/dialog.component';
+import {MatButtonModule} from '@angular/material/button';
 
 @NgModule({
   declarations: [
@@ -34,6 +36,9 @@ import {MatExpansionModule} from '@angular/material/expansion';
     DetailalbumComponent,
     ListeplaylistComponent,
     DetailplaylistComponent,
+    DialogComponent,
+
+
   ],
   imports: [
     BrowserModule,
@@ -51,12 +56,16 @@ import {MatExpansionModule} from '@angular/material/expansion';
     RouterModule,
     RouterModule.forRoot(appRoutes),
     MatExpansionModule,
-MatRadioModule
+    MatRadioModule,
+    MatDialogModule,
+    MatButtonModule
+
 
 
   ],
   providers: [SpotifyService],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  entryComponents: [ DialogComponent ]
 })
 export class AppModule { }
 
