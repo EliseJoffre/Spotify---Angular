@@ -1,0 +1,13 @@
+<h2>A quelle position souhaitez vous mettre cette chanson ?</h2>
+<form #updatePosition="ngForm" (ngSubmit)="majPosition(updatePosition.value.position)">
+
+<mat-form-field>
+  <mat-select placeholder="Position" ngModel name="position"  required >
+    <mat-option    *ngFor="let i of list" [value]="i">
+      {{i}}
+    </mat-option>
+  </mat-select>
+</mat-form-field>
+  <input id="bouton" style="margin-top: 1%"  [disabled]="!updatePosition.valid" type="submit" value="VALIDER">
+
+</form>

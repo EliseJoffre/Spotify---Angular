@@ -26,6 +26,8 @@ import {MatExpansionModule} from '@angular/material/expansion';
 import {MatDialogModule} from '@angular/material/dialog';
 import { DialogComponent } from './dialog/dialog.component';
 import {MatButtonModule} from '@angular/material/button';
+import { DialogReorderComponent } from './dialog-reorder/dialog-reorder.component';
+import {MatSelectModule} from '@angular/material/select';
 
 @NgModule({
   declarations: [
@@ -37,6 +39,7 @@ import {MatButtonModule} from '@angular/material/button';
     ListeplaylistComponent,
     DetailplaylistComponent,
     DialogComponent,
+    DialogReorderComponent,
 
 
   ],
@@ -58,14 +61,15 @@ import {MatButtonModule} from '@angular/material/button';
     MatExpansionModule,
     MatRadioModule,
     MatDialogModule,
-    MatButtonModule
+    MatButtonModule,
+    MatSelectModule
 
 
 
   ],
   providers: [SpotifyService],
   bootstrap: [AppComponent],
-  entryComponents: [ DialogComponent ]
+  entryComponents: [ DialogComponent, DialogReorderComponent ]
 })
 export class AppModule { }
 

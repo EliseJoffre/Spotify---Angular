@@ -11,9 +11,9 @@ export class SpotifyService {
 
   private spotifyUrlSearchAlbum = 'https://api.spotify.com/v1/search?type=album&market=FR&limit=10&q=';
   private spotifyUrlSearchChanteur = 'https://api.spotify.com/v1/search?type=artist&market=FR&limit=10&q=';
-  private token = 'BQAxhU282i4Vwqzxr2vBemdkOfsnTCdxxgvAzvWhDk76Y7DxWtiAn9XRHjvSmQ84M_RHWzTTDf9AfzH-HZS_XCfQlTV1' +
-    'xoclIOzXNj3QucaRpi0g1XiyhgY7PU9aX_pFzuZpmVUDkMJeemrmAhurHcHrYLU1eG6zunqoEMzgvx2yTpDw-2UqfK_QDPgrCF2uV3-Cv7_iq_BXeL' +
-    'Eg60N16SGHLamUx0Of_0gTIld3QUufkD-GFP8ik1Zpy_lA8gYThhXNKqRTDqwMQw7M';
+  private token = 'BQCYCvH7KmPRYdpJuGYnE_IPiqb2ptVredsv1mCp1ySJe6jhlv-5N9Iwhb4B4hfFe76TjXgYzaN6tdxntjmYV9pS' +
+    'aqI2xp1KNvCx_vouTnHw0T87EI5p_Nl8l35JEKzbkKWiKXmBcs8nBcs9P-GJbzMTN2Pi261M1ZndmtXfehZE8SrjW5X-EEEjdKQa7Xz7mQ' +
+    'Y_XRozHCD0Akc2_042Q8L95SSYVJUffUA_TjCHyKMZz7Zx3VB3uNKEC495TNWheNwYW5ZupwcvV3n6';
   private spotifyUrlAlbum = 'https://api.spotify.com/v1/albums/';
   private spotifyUrlPlaylist = 'https://api.spotify.com/v1/users/elisejoffre/playlists';
   private spotifyUrlUnePlaylist = 'https://api.spotify.com/v1/playlists/';
@@ -40,14 +40,14 @@ export class SpotifyService {
   }
 
   addPlaylist(playlist) {
-    this.http.post(this.spotifyUrlPlaylist,  playlist, { headers : this.headers});
+    this.http.post(this.spotifyUrlPlaylist,  playlist, { headers : this.headers}).subscribe(res => console.log(res));
   }
 
   getUnePlaylist(id: string) {
     return this.http.get(this.spotifyUrlUnePlaylist + id, { headers : this.headers});
   }
   updatePlaylist(id: string, playlist) {
-    return this.http.put(this.spotifyUrlUnePlaylist + id, playlist , { headers : this.headers});
+    return this.http.put(this.spotifyUrlUnePlaylist + id, playlist , { headers : this.headers}).subscribe(res => console.log(res));
   }
 
   deleteTrack(id: string, tracks) {
@@ -55,7 +55,8 @@ export class SpotifyService {
   }
 
   addTrack(id: string, track) {
-    return this.http.post(this.spotifyUrlUnePlaylist + id +  '/tracks' , track, { headers : this.headers});
+    return this.http.post(this.spotifyUrlUnePlaylist + id +  '/tracks' , track, { headers : this.headers})
+      .subscribe(res => console.log('hey' + res));
   }
 
 }

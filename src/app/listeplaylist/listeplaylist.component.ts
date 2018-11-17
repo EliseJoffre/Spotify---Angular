@@ -30,7 +30,6 @@ export class ListeplaylistComponent implements OnInit {
 
   addPlaylist(nom: string, description: string, bool: string) {
 
-
     if (bool === 'true') {
       this.public = true;
     } else {
@@ -43,7 +42,7 @@ export class ListeplaylistComponent implements OnInit {
       'public': this.public,
 
     });
-    location.reload();
+
 
   }
 

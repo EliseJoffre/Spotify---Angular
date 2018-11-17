@@ -15,12 +15,7 @@ export class DialogComponent implements OnInit {
 
   }
   private _playlists: any[];
-  set playlists(value: any[]) {
-    this._playlists = value;
-  }
-  get playlists(): any[] {
-    return this._playlists;
-  }
+
   ngOnInit() {
     this.spotService.getPlaylist().subscribe(
       (resultat) => {
@@ -33,10 +28,9 @@ export class DialogComponent implements OnInit {
 
   addToMyPlaylist(id: string, nb: number) {
     console.log('nb titre' + nb);
-
     const track = {'uris': [this.data], 'position': nb};
     this.spotService.addTrack(id, track);
-    location.reload();
+
   }
 
 }
