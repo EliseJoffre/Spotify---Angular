@@ -13,12 +13,12 @@ export class DetailplaylistComponent implements OnInit {
 
   maplaylist: Object;
   public: boolean;
-  tracks: Array<Object>;
   constructor(private spotService: SpotifyService, private route: ActivatedRoute, public dialog: MatDialog) { }
-
-  openDialogReorder(i, cpt) {
+  displayedColumns: string[] = ['position', 'name', 'duree', 'extrait', 'supprimer', 'reorder'];
+  dataSource:  [any];
+  openDialogReorder(i, cpt, id) {
     this.dialog.open(DialogReorderComponent, {
-      data: [i, cpt],
+      data: [i, cpt, id],
 
     });
   }
@@ -26,8 +26,10 @@ export class DetailplaylistComponent implements OnInit {
   ngOnInit() {
     this.spotService.getUnePlaylist(this.route.snapshot.params['id']).subscribe(
       (resultat) => {
-        console.log(resultat);
         this.maplaylist = resultat;
+        this.dataSource = resultat['tracks']['items'];
+
+        console.log(this.dataSource);
 
       }
     );
@@ -51,8 +53,11 @@ export class DetailplaylistComponent implements OnInit {
   }
 
 
-  deletePlaylist(uri, position) {
-    // this.spotService.deleteTrack(this.route.snapshot.params['id'], uri , position);
+  deletePlaylist(id, uri, position) {
+    console.log('id :' + id);
+    console.log('uri :' + uri);
+    console.log('pos :' + position);
+    this.spotService.deleteTrack(id, uri , position);
   }
 
 }

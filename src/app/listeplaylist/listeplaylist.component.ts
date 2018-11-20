@@ -43,6 +43,7 @@ export class ListeplaylistComponent implements OnInit {
 
     });
 
+    location.reload();
 
   }
 

@@ -28,6 +28,7 @@ import { DialogComponent } from './dialog/dialog.component';
 import {MatButtonModule} from '@angular/material/button';
 import { DialogReorderComponent } from './dialog-reorder/dialog-reorder.component';
 import {MatSelectModule} from '@angular/material/select';
+import {MatTableModule} from '@angular/material/table';
 
 @NgModule({
   declarations: [
@@ -62,7 +63,8 @@ import {MatSelectModule} from '@angular/material/select';
     MatRadioModule,
     MatDialogModule,
     MatButtonModule,
-    MatSelectModule
+    MatSelectModule,
+    MatTableModule
 
 
 

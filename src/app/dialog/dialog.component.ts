@@ -14,13 +14,13 @@ export class DialogComponent implements OnInit {
   constructor(private spotService: SpotifyService, @Inject(MAT_DIALOG_DATA) public data: any) {
 
   }
-  private _playlists: any[];
+  private playlists: any[];
 
   ngOnInit() {
     this.spotService.getPlaylist().subscribe(
       (resultat) => {
-        this._playlists = resultat['items'];
-        console.log(this._playlists);
+        this.playlists = resultat['items'];
+        console.log(this.playlists);
 
       }
     );
@@ -30,6 +30,7 @@ export class DialogComponent implements OnInit {
     console.log('nb titre' + nb);
     const track = {'uris': [this.data], 'position': nb};
     this.spotService.addTrack(id, track);
+    //location.reload();
 
   }
 
