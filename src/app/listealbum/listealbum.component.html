@@ -1,4 +1,3 @@
-
 <h1>RECHERCHER UN ALBUM</h1>
 <mat-card>
   <form #searchAlbum="ngForm" (ngSubmit)="chercherAlbums(searchAlbum.value.mot)">
@@ -6,7 +5,7 @@
       <input matInput type="text" placeholder="Mot-clés" ngModel name="mot" required>
     </mat-form-field>
 
-    <input id="bouton"  [disabled]="!searchAlbum.valid" type="submit" value="VALIDER">
+    <input id="bouton" [disabled]="!searchAlbum.valid" type="submit" value="VALIDER">
 
   </form>
 </mat-card>
@@ -16,11 +15,12 @@
     <mat-card>
       <mat-card-header>
 
-        <mat-card-title><a [routerLink]="['/album' , cd.id]" style="text-align: center"> {{cd.name}}</a></mat-card-title>
+        <mat-card-title><a [routerLink]="['/album' , cd.id]" style="font-size: large; text-decoration: none">
+          {{cd.name}}</a></mat-card-title>
 
       </mat-card-header>
       <a [routerLink]="['/album' , cd.id]">
-      <img mat-card-image src="{{cd.images[0].url}}" style="width: 70%; margin-top: 8%">
+        <img mat-card-image src="{{cd.images[0].url}}" style="width: 70%; margin-top: 8%">
       </a>
     </mat-card>
   </mat-grid-tile>

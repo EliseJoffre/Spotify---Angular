@@ -1,29 +1,8 @@
-import { Component, OnInit, Inject } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import {Component, OnInit, Inject} from '@angular/core';
+import {ActivatedRoute} from '@angular/router';
 import {SpotifyService} from '../spotify.service';
 import {MatDialog, MAT_DIALOG_DATA} from '@angular/material';
 import {DialogComponent} from '../dialog/dialog.component';
-
-export interface PeriodicElement {
-  name: string;
-  position: number;
-  weight: number;
-  symbol: string;
-}
-
-const ELEMENT_DATA: PeriodicElement[] = [
-  {position: 1, name: 'Hydrogen', weight: 1.0079, symbol: 'H'},
-  {position: 2, name: 'Helium', weight: 4.0026, symbol: 'He'},
-  {position: 3, name: 'Lithium', weight: 6.941, symbol: 'Li'},
-  {position: 4, name: 'Beryllium', weight: 9.0122, symbol: 'Be'},
-  {position: 5, name: 'Boron', weight: 10.811, symbol: 'B'},
-  {position: 6, name: 'Carbon', weight: 12.0107, symbol: 'C'},
-  {position: 7, name: 'Nitrogen', weight: 14.0067, symbol: 'N'},
-  {position: 8, name: 'Oxygen', weight: 15.9994, symbol: 'O'},
-  {position: 9, name: 'Fluorine', weight: 18.9984, symbol: 'F'},
-  {position: 10, name: 'Neon', weight: 20.1797, symbol: 'Ne'},
-];
-
 
 @Component({
   selector: 'app-detailalbum',
@@ -34,11 +13,14 @@ const ELEMENT_DATA: PeriodicElement[] = [
 export class DetailalbumComponent implements OnInit {
 
   monalbum: Object;
+  id = this.route.snapshot.params['id'];
 
+  constructor(private spotService: SpotifyService, private route: ActivatedRoute, public dialog: MatDialog) {
+  }
 
-  constructor(private spotService: SpotifyService, private route: ActivatedRoute, public dialog: MatDialog) {}
   displayedColumns: string[] = ['position', 'name', 'duree', 'extrait', 'ajout'];
-  dataSource:  [any];
+  dataSource: [any];
+
   openDialog(uri) {
     this.dialog.open(DialogComponent, {
       data: uri,
@@ -46,15 +28,16 @@ export class DetailalbumComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.spotService.getAlbum(this.route.snapshot.params['id']).subscribe(
+
+    // Recuperation des informations d'un album
+
+    this.spotService.getAlbum(this.id).subscribe(
       (resultat) => {
 
         this.monalbum = resultat;
         this.dataSource = resultat['tracks']['items'];
-        console.log(this.dataSource[0]);
       }
     );
-
 
 
   }

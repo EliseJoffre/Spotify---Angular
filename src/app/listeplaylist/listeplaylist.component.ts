@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {SpotifyService} from '../spotify.service';
 
 @Component({
@@ -8,42 +8,45 @@ import {SpotifyService} from '../spotify.service';
 })
 export class ListeplaylistComponent implements OnInit {
 
-   private _playlists: any[];
+  private _playlists: any[];
   set playlists(value: any[]) {
     this._playlists = value;
   }
+
   get playlists(): any[] {
     return this._playlists;
   }
+
   public: boolean;
 
-  constructor(private spotService: SpotifyService) { }
+  constructor(private spotService: SpotifyService) {
+  }
 
   ngOnInit() {
+
+    // Récupération des de toutes playlists
+
     this.spotService.getPlaylist().subscribe(
       (resultat) => {
         this._playlists = resultat['items'];
-        console.log(this._playlists);
       }
     );
   }
 
+  // Ajout d'une playlist
+
   addPlaylist(nom: string, description: string, bool: string) {
 
-    if (bool === 'true') {
-      this.public = true;
-    } else {
-      this.public = false;
-    }
+    this.public = bool === 'true' ? true : false;
 
-    this.spotService.addPlaylist({
+    const playlist = {
       'name': nom,
       'description': description,
       'public': this.public,
 
-    });
+    };
 
-    location.reload();
+    this.spotService.addPlaylist(playlist);
 
   }
 

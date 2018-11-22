@@ -1,7 +1,8 @@
-
 <h2>A quelle playlist souhaitez vous l'ajouter ?</h2>
-    <ul *ngFor="let pl of playlists; let i = index">
-            <li><button mat-button (click)="addToMyPlaylist(pl.id,pl.tracks.total)">{{pl.name}}</button></li>
+<ul *ngFor="let pl of playlists; let i = index">
+  <li>
+    <button mat-button (click)="addToMyPlaylist(pl.id,pl.tracks.total)">{{pl.name}}</button>
+  </li>
 
-    </ul>
+</ul>
 

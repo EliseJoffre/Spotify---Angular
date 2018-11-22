@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 
 
 @Component({
@@ -9,7 +9,9 @@ import { Component, OnInit } from '@angular/core';
 export class AccueilComponent implements OnInit {
 
   title = 'Bienvenue dans notre application de recherche de musique !';
-  constructor() { }
+
+  constructor() {
+  }
 
   ngOnInit() {
   }

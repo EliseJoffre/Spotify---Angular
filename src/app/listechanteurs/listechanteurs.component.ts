@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {SpotifyService} from '../spotify.service';
 
 @Component({
@@ -8,7 +8,8 @@ import {SpotifyService} from '../spotify.service';
 })
 export class ListechanteursComponent implements OnInit {
 
-  constructor(private spotService: SpotifyService) { }
+  constructor(private spotService: SpotifyService) {
+  }
 
   chanteurs: [any];
 
@@ -16,11 +17,13 @@ export class ListechanteursComponent implements OnInit {
 
   }
 
+  // Recherche d'un chanteur en fonction d'un mot clé
+
   chercherChanteurs(chanteur: string) {
     this.spotService.getChanteurs(chanteur).subscribe(
       (resultat) => {
         console.log(resultat['artists'].items);
-         this.chanteurs = resultat['artists'].items;
+        this.chanteurs = resultat['artists'].items;
 
       }
     );

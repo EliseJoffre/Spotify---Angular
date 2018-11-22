@@ -1,5 +1,4 @@
-
-<div  style="margin: 4% 7%;text-align: center">
+<div style="margin: 4% 7%;text-align: center">
   <mat-accordion>
     <mat-expansion-panel>
       <mat-expansion-panel-header>
@@ -7,25 +6,26 @@
           <h2>MODIFIER UNE PLAYLIST</h2>
         </mat-panel-title>
       </mat-expansion-panel-header>
-      <form #updatePlaylist="ngForm" (ngSubmit)="majPlaylist(updatePlaylist.value.name,updatePlaylist.value.description,updatePlaylist.value.bool)">
+      <form #updatePlaylist="ngForm"
+            (ngSubmit)="majPlaylist(updatePlaylist.value.name,updatePlaylist.value.description,updatePlaylist.value.bool)">
         <div style="text-align:left; " class="example-container">
-          <mat-form-field >
-            <input  matInput type="text" value="{{maplaylist.name}}" placeholder="Nom" ngModel name="name" required>
+          <mat-form-field>
+            <input matInput type="text" value="{{maplaylist.name}}" placeholder="Nom" ngModel name="name" required>
           </mat-form-field>
           <br>
           <mat-form-field>
-            <textarea rows="6"  matInput ngModel name="description" placeholder="Description" required>{{maplaylist.description}}</textarea>
+            <textarea rows="6" matInput ngModel name="description" placeholder="Description" required>{{maplaylist.description}}</textarea>
           </mat-form-field>
           <br>
-          <mat-radio-group  name="bool" matInput ngModel required>
-            <mat-label >Souhaitez vous la rendre public ? *</mat-label>
+          <mat-radio-group name="bool" matInput ngModel required>
+            <mat-label>Souhaitez vous la rendre public ? *</mat-label>
             <br><br>
-            <mat-radio-button selected  value="true">Oui  </mat-radio-button>
-            <mat-radio-button   value="false">Non</mat-radio-button>
+            <mat-radio-button value="true">Oui</mat-radio-button>
+            <mat-radio-button value="false">Non</mat-radio-button>
           </mat-radio-group>
         </div>
 
-        <input id="bouton" style="margin-top: 1%"  [disabled]="!updatePlaylist.valid" type="submit" value="VALIDER">
+        <input id="bouton" style="margin-top: 1%" [disabled]="!updatePlaylist.valid" type="submit" value="VALIDER">
 
       </form>
     </mat-expansion-panel>
@@ -33,60 +33,68 @@
 </div>
 
 
+<h1 style="font-weight: bold ">{{maplaylist.name}}</h1>
+<img *ngIf="maplaylist.images.length != 0" mat-card-image style="width: 30%" src="{{maplaylist.images[0].url}}">
+<img mat-card-image *ngIf="maplaylist.images.length==0 " style="width: 30%" src="../../assets/no_image.png">
+<p *ngIf="maplaylist.public==true">{{maplaylist.description}} (Cette playlist est publique)</p>
+<p *ngIf="maplaylist.public==false">{{maplaylist.description}} (Cette playlist est privée)</p>
+<p *ngIf="maplaylist.collaborative==true">{{maplaylist.description}} (Cette playlist est collaborative)</p>
 
 
-  <h1 style="font-weight: bold ">{{maplaylist.name}}</h1>
-  <img *ngIf="maplaylist.images.length != 0" mat-card-image style="width: 30%" src="{{maplaylist.images[0].url}}"  >
-  <img mat-card-image *ngIf="maplaylist.images.length==0 " style="width: 30%" src="../../assets/no_image.png" >
-  <p *ngIf="maplaylist.public==true">{{maplaylist.description}} (Cette playlist est publique)</p>
-  <p *ngIf="maplaylist.public==false">{{maplaylist.description}} (Cette playlist est privée)</p>
+<h2>MES CHANSONS</h2>
+
+<table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
 
 
-          <h2>MES CHANSONS</h2>
+  <ng-container matColumnDef="position">
+    <th mat-header-cell class="title" *matHeaderCellDef> No</th>
+    <td mat-cell *matCellDef="let i=index"> {{i+1}}</td>
+  </ng-container>
 
-  <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+  <ng-container matColumnDef="name">
+    <th mat-header-cell class="title" *matHeaderCellDef> Titre</th>
+    <td mat-cell *matCellDef="let element"> {{element.track.name}}</td>
+  </ng-container>
+
+  <ng-container matColumnDef="duree">
+    <th mat-header-cell class="title" *matHeaderCellDef> Durée</th>
+    <td mat-cell *matCellDef="let element"> {{((element.track.duration_ms/1000)/60) | number:0}} mn</td>
+  </ng-container>
+
+  <ng-container matColumnDef="extrait">
+    <th mat-header-cell class="title" *matHeaderCellDef> Extrait</th>
+    <td mat-cell *matCellDef="let element">
+      <audio *ngIf="element.track.preview_url != null" id=”AudioSong” controls [src]="element.track.preview_url">pas
+        supporté
+      </audio>
+      <p *ngIf="element.track.preview_url == null">-</p>
+    </td>
+  </ng-container>
+
+  <ng-container matColumnDef="supprimer">
+    <th mat-header-cell class="title" *matHeaderCellDef> Supprimer</th>
+    <td mat-cell *matCellDef="let i=index, let element">
+      <button mat-button (click)="deletePlaylist(maplaylist.id,element.track.uri,i)">
+        <mat-icon>delete</mat-icon>
+      </button>
+
+    </td>
+  </ng-container>
+
+  <ng-container matColumnDef="reorder">
+    <th mat-header-cell class="title" *matHeaderCellDef> Réordonner</th>
+    <td mat-cell *matCellDef="let i=index">
+      <button mat-button (click)="openDialogReorder(i,dataSource.length,maplaylist.id)">
+        <mat-icon>loop</mat-icon>
+      </button>
 
 
-    <ng-container matColumnDef="position">
-      <th mat-header-cell  *matHeaderCellDef > No </th>
-      <td mat-cell *matCellDef="let i=index"> {{i+1}} </td>
-    </ng-container>
+    </td>
+  </ng-container>
 
-    <ng-container matColumnDef="name">
-      <th mat-header-cell *matHeaderCellDef> Titre </th>
-      <td mat-cell *matCellDef="let element"> {{element.track.name}} </td>
-    </ng-container>
-
-    <ng-container matColumnDef="duree">
-      <th mat-header-cell *matHeaderCellDef> Durée </th>
-      <td mat-cell *matCellDef="let element"> {{((element.track.duration_ms/1000)/60) | number:0}} mn </td>
-    </ng-container>
-
-    <ng-container matColumnDef="extrait">
-      <th mat-header-cell *matHeaderCellDef> Extrait </th>
-      <td mat-cell *matCellDef="let element">         <audio *ngIf="element.track.preview_url != null" id=”AudioSong” controls [src]="element.track.preview_url">pas supporté</audio>
-        <p *ngIf="element.track.preview_url == null"  >-</p>
-      </td>
-    </ng-container>
-
-    <ng-container matColumnDef="supprimer">
-      <th mat-header-cell *matHeaderCellDef> Supprimer </th>
-      <td mat-cell *matCellDef="let i=index"> <button mat-button (click)="deletePlaylist(maplaylist.id,element.track.uri,i)"><mat-icon >delete</mat-icon></button>
-
-      </td>
-    </ng-container>
-
-    <ng-container matColumnDef="reorder">
-      <th mat-header-cell *matHeaderCellDef> Réordonner </th>
-      <td mat-cell *matCellDef="let i=index">   <button mat-button (click)="openDialogReorder(i,dataSource.length,maplaylist.id)"> <mat-icon>loop</mat-icon></button>
-
-
-      </td>
-    </ng-container>
-
-    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-  </table>
+  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+  <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+</table>
 
 
 

@@ -1,59 +1,55 @@
 <h1>MES PLAYLISTS</h1>
-<div style="text-align:center; margin-left: 7%; margin-right: 7%" >
-<mat-accordion>
-  <mat-expansion-panel>
-    <mat-expansion-panel-header>
-      <mat-panel-title>
-        <h2>AJOUTER UNE PLAYLIST</h2>
-      </mat-panel-title>
-    </mat-expansion-panel-header>
+<div style="text-align:center; margin-left: 7%; margin-right: 7%">
+  <mat-accordion>
+    <mat-expansion-panel>
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          <h2>AJOUTER UNE PLAYLIST</h2>
+        </mat-panel-title>
+      </mat-expansion-panel-header>
 
-
-
-      <form #ajouterPlaylist="ngForm" (ngSubmit)="addPlaylist(ajouterPlaylist.value.name,ajouterPlaylist.value.description,ajouterPlaylist.value.bool)">
+      <form #ajouterPlaylist="ngForm"
+            (ngSubmit)="addPlaylist(ajouterPlaylist.value.name,ajouterPlaylist.value.description,ajouterPlaylist.value.bool)">
         <div style="text-align:left; " class="example-container">
-          <mat-form-field >
-            <input  matInput type="text" placeholder="Nom" ngModel name="name" required>
+          <mat-form-field>
+            <input matInput type="text" placeholder="Nom" ngModel name="name" required>
           </mat-form-field>
           <br>
           <mat-form-field>
-            <textarea rows="6"  matInput ngModel name="description" placeholder="Description" required></textarea>
+            <textarea rows="6" matInput ngModel name="description" placeholder="Description" required></textarea>
           </mat-form-field>
           <br>
           <mat-radio-group name="bool" matInput ngModel required>
-            <mat-label >Souhaitez vous la rendre public ? *</mat-label>
+            <mat-label>Souhaitez vous la rendre public ? *</mat-label>
             <br><br>
-            <mat-radio-button  value="true">Oui  </mat-radio-button>
+            <mat-radio-button value="true">Oui</mat-radio-button>
 
-            <mat-radio-button   value="false">Non</mat-radio-button>
+            <mat-radio-button value="false">Non</mat-radio-button>
           </mat-radio-group>
 
         </div>
-
-        <input id="bouton" style="margin-top: 1%"  [disabled]="!ajouterPlaylist.valid" type="submit" value="VALIDER">
-
+        <input id="bouton" style="margin-top: 1%" [disabled]="!ajouterPlaylist.valid" type="submit" value="VALIDER">
       </form>
 
-
-
-  </mat-expansion-panel>
-</mat-accordion>
+    </mat-expansion-panel>
+  </mat-accordion>
 </div>
-<div style="text-align:center; margin-left: 7%; margin-right: 7%" >
-<mat-grid-list  cols="3">
-  <mat-grid-tile *ngFor="let pl of playlists; let i = index">
-    <mat-card>
-      <mat-card-header>
+<div style="text-align:center; margin-left: 7%; margin-right: 7%">
+  <mat-grid-list cols="3">
+    <mat-grid-tile *ngFor="let pl of playlists; let i = index">
+      <mat-card>
+        <mat-card-header>
 
-        <mat-card-title> <a [routerLink]="['/playlist' , pl.id]" style="text-align: center">{{pl.name}}</a></mat-card-title>
+          <mat-card-title><a [routerLink]="['/playlist' , pl.id]" style="text-align: center; text-decoration: none">{{pl.name}}</a>
+          </mat-card-title>
 
-      </mat-card-header>
+        </mat-card-header>
 
         <img *ngIf="pl.images!=0" mat-card-image src="{{pl.images[0].url}}" style="width: 60%; margin-top: 8%">
-      <img *ngIf="pl.images==0" mat-card-image src="{{../../assets/no_image.png" style="width: 100%; margin-top: 8%">
-    </mat-card>
-  </mat-grid-tile>
-</mat-grid-list>
+        <img *ngIf="pl.images==0" mat-card-image src="{{../../assets/no_image.png" style="width: 100%; margin-top: 8%">
+      </mat-card>
+    </mat-grid-tile>
+  </mat-grid-list>
 </div>
 
 
