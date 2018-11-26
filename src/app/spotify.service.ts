@@ -9,15 +9,16 @@ import {Observable} from 'rxjs';
 })
 export class SpotifyService {
 
-  private token = 'BQBpn-wHO_t98YCRze_tW2EPFIepHdzzkVMpGfoaFcTruASP8QUOgt2XzXBTsLw2X-bVACZ3fUBoorpoQ1HCq8Lw' +
-    'oPydlLr8M3qHQIc9sumspKKDwIhxd0fyfOXB8-6MFcs2czUO8O_cGmHOgDme5l1X8a5MVpKg-NnR-ku8yGdKW4lFmFySa8_-JXWr' +
-    'zTRYwJyrqeiCxwSQm0RF41cN5RuZh66oy-wIuH-TExxaF8WkxrildUK6IW9DCAxTwebbrUgAVKOdIec4GTdv';
+  private token = 'BQDcDIcT61cEtpwjg3_y4xyi2P9wC6Hn9h8U5Ph7jqg3-jG3qjJecBV9uWUQF3JDssLChzq-lzqGFqxgivCBE' +
+    '7efIEwHgnqqeOOmqbB-H_vZb4jzSDS2LQYFz_2kQuBYX66XA_LDY69R21Gf7hEYpDfC1aLzzDEDnwkyGvWgGzrr5p2ZnV' +
+    'wdHnL2civHRYEd3pLZ4JGMkcIGrFYl9Oz0eCAhS3hRA-4JIx3PrvT6MXGa6HifZXBo2iJEdT3lZCecALHaQSynP1hrwv78';
 
   private spotifyUrlSearchAlbum = 'https://api.spotify.com/v1/search?type=album&market=FR&limit=10&q=';
   private spotifyUrlSearchChanteur = 'https://api.spotify.com/v1/search?type=artist&market=FR&limit=10&q=';
   private spotifyUrlAlbum = 'https://api.spotify.com/v1/albums/';
   private spotifyUrlPlaylist = 'https://api.spotify.com/v1/users/elisejoffre/playlists';
   private spotifyUrlUnePlaylist = 'https://api.spotify.com/v1/playlists/';
+  private spotifyUrlArtist = 'https://api.spotify.com/v1/artists/'
 
   private headers: HttpHeaders;
 
@@ -103,6 +104,12 @@ export class SpotifyService {
       ;
   }
 
+
+  // Fonction qui permet de changer la position d'une chanson dans une playlist
+
+  getUnChanteur(id: string) {
+    return this.http.get(this.spotifyUrlArtist + id + '/albums', {headers: this.headers});
+  }
 }
 
 

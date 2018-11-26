@@ -29,6 +29,7 @@ import {MatButtonModule} from '@angular/material/button';
 import {DialogReorderComponent} from './dialog-reorder/dialog-reorder.component';
 import {MatSelectModule} from '@angular/material/select';
 import {MatTableModule} from '@angular/material/table';
+import { DetailartistComponent } from './detailartist/detailartist.component';
 
 @NgModule({
   declarations: [
@@ -41,6 +42,7 @@ import {MatTableModule} from '@angular/material/table';
     DetailplaylistComponent,
     DialogComponent,
     DialogReorderComponent,
+    DetailartistComponent,
 
 
   ],

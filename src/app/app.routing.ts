@@ -6,6 +6,7 @@ import {ListechanteursComponent} from './listechanteurs/listechanteurs.component
 import {DetailalbumComponent} from './detailalbum/detailalbum.component';
 import {ListeplaylistComponent} from './listeplaylist/listeplaylist.component';
 import {DetailplaylistComponent} from './detailplaylist/detailplaylist.component';
+import {DetailartistComponent} from './detailartist/detailartist.component';
 
 export const appRoutes: Routes = [
   {path: '', component: AccueilComponent},
@@ -15,6 +16,7 @@ export const appRoutes: Routes = [
   {path: 'album/:id', component: DetailalbumComponent},
   {path: 'playlist', component: ListeplaylistComponent},
   {path: 'playlist/:id', component: DetailplaylistComponent},
+  {path: 'chanteurs/:id', component: DetailartistComponent},
 
 
 ];

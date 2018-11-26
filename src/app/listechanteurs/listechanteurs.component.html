@@ -14,7 +14,8 @@
   <mat-grid-tile *ngFor="let ch of chanteurs; let i = index">
     <mat-card>
       <mat-card-header>
-        <mat-card-title><p style="text-align: center;font-size: large"> {{ch.name}}</p></mat-card-title>
+        <mat-card-title><a [routerLink]="['/chanteurs' , ch.id]" style="text-align: center; text-decoration: none">{{ch.name}}</a>
+        </mat-card-title>
       </mat-card-header>
       <img mat-card-image *ngIf="ch.images.length >0 " src={{ch.images[2].url}}>
       <img mat-card-image *ngIf="ch.images.length==0 " src="../../assets/no_image.png">
